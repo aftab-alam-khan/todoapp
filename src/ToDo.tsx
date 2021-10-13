@@ -1,18 +1,19 @@
 import { useState } from "react";
 
 
-const ToDo = (props: any) => {
+const ToDo = (props: {text:string}) => {
 
-    const [line, setLine] = useState(false);
-    const [fontStyle, setFontStyle] = useState(true)
+
+    const [done, setDone] = useState(false);
 
     const strikeOut = () => {
-        setLine(true);
-        setFontStyle(false)
-        
+        setDone(!done)
     };
 
-    return (<li style={{ textDecoration: line? 'line-through': '', fontWeight: fontStyle? 'normal': 'bolder'}} onClick={strikeOut}>{props.text}</li>)
+    return (<li style={{
+        textDecoration: done ? 'line-through' : '',
+        fontWeight: done ? 'bolder': 'normal' 
+    }} onClick={strikeOut}>{props.text}</li>)
 };
 
 export default ToDo;

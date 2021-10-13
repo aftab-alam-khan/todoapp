@@ -5,28 +5,25 @@ import ToDo from './ToDo'
 
 function App() {
 
-  const [, setNewToDo] = useState("test new to do")
-  const [inputText, setInputText] = useState('')
+  const [inputText, setInputText] = useState('test new to do')
   const [toDoList, setToDoList] = useState<string[]>([])
   let disabledButton = (inputText.length === 0)
 
-
-  
-  
-  
   return (
     
     <div>
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        setToDoList([...toDoList, inputText])
+        
+        setInputText('');
+      }}>
       <input type='text' name='todo' placeholder='Enter your todo' onChange={(event) => {
         setInputText(event.target.value);
       }} value={inputText}></input>
       
-      <button onClick={() => {
-        setNewToDo(inputText);
-        setToDoList([...toDoList, `${inputText}`])
-        
-        setInputText('');
-      }} disabled={disabledButton}>Add ToDo</button>
+      <button  disabled={disabledButton}>Add ToDo</button>
+      </form>
       <ul>
         {toDoList.map((l, i) =>
           
@@ -34,6 +31,7 @@ function App() {
         )
       }
       </ul>
+
       </div>
   );
 }
