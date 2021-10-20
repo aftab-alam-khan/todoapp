@@ -6,43 +6,52 @@ import ToDo from './ToDo'
 function App() {
 
   const [inputText, setInputText] = useState('')
-  const [toDoList, setToDoList] = useState<string[]>([])
-  const [reset, setReset] = useState(true);
+  const [toDoLists, setToDoLists] = useState<string[]>([])
+  const [deleteListItem, setdeleteListItem] = useState<number[]>([]);
   let disabledButton = (inputText.length === 0)
-  let disabledReset = (reset)
-  
-  
+  let disabledReset = (deleteListItem.length === 0)
 
   return (
     
     <div>
       <form onSubmit={(event) => {
         event.preventDefault();
-        setToDoList([...toDoList, inputText])
+        setToDoLists([...toDoLists, inputText])
         
         setInputText('');
       }}>
-      <input type='text' name='todo' placeholder='Enter your todo' onChange={(event) => {
+      <input type='text' name='todo' placeholder='Enter your todos' onChange={(event) => {
         setInputText(event.target.value);
       }} value={inputText}></input>
       
       <button  disabled={disabledButton}>Add ToDo</button>
       </form>
       <ul>
-        {toDoList.map((l, i) =>
+        {toDoLists.map((toDoList, index) =>
           
-          <ToDo key={i} text={l} complete={(value: boolean) => {
-            setReset(value)
-            
+          <ToDo key={index} text={toDoList} id={index}
+            done={deleteListItem.includes(index)}
+            completed={(id: number, status: boolean) => {
+
+            if (status){
+              const rawdeleteListItem = deleteListItem.filter(item => item !== id);
+              
+              setdeleteListItem([...rawdeleteListItem])
+            } else {
+              setdeleteListItem([...deleteListItem, id])
+            }
           }} />
         )
       }
       </ul>
-      <button disabled={disabledReset} onClick={() => setReset(!reset)}>Reset</button>
-
-      {/* add the button that will remove all strike out from the list
-      try to bring the all states in app page
-      check more about the useEffect react hook so that when we */}
+      <button disabled={disabledReset} onClick={() => {
+        
+        const rawdeleteListItem = toDoLists.filter( (item, index) => deleteListItem.indexOf(index) === -1)
+        
+        setToDoLists([...rawdeleteListItem])
+        setdeleteListItem([])
+      }
+      }>Delete</button>
 
       </div>
   );
