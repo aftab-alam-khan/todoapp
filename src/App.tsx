@@ -5,9 +5,13 @@ import ToDo from './ToDo'
 
 function App() {
 
-  const [inputText, setInputText] = useState('test new to do')
+  const [inputText, setInputText] = useState('')
   const [toDoList, setToDoList] = useState<string[]>([])
+  const [reset, setReset] = useState(true);
   let disabledButton = (inputText.length === 0)
+  let disabledReset = (reset)
+  
+  
 
   return (
     
@@ -27,10 +31,18 @@ function App() {
       <ul>
         {toDoList.map((l, i) =>
           
-          <ToDo key={i} text={l} />
+          <ToDo key={i} text={l} complete={(value: boolean) => {
+            setReset(value)
+            
+          }} />
         )
       }
       </ul>
+      <button disabled={disabledReset} onClick={() => setReset(!reset)}>Reset</button>
+
+      {/* add the button that will remove all strike out from the list
+      try to bring the all states in app page
+      check more about the useEffect react hook so that when we */}
 
       </div>
   );
