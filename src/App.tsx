@@ -49,7 +49,6 @@ function App() {
           <button disabled={disabledButton}>Add ToDo</button>
         </div>
       </form>
-      <img src={imageLoading} alt="img" />
       {loading ? (<img src={imageLoading} alt="img" />) : (
       
           <ul>
