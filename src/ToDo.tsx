@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 interface propsInterface{
     text: string,
@@ -8,19 +7,18 @@ interface propsInterface{
 }
 
 const ToDo = (props: propsInterface) => {
-    
-    // const [done, setDone] = useState(false);
 
     const strikeOut = () => {
-        // setDone(!props.done);
-        props.completed(props.id, props.done);
+        props.completed(props.id);
     };
 
     return (
+        
         <li style={{
-        textDecoration: props.done ? 'line-through': '',
-        fontWeight: props.done ? 'bolder': 'normal'
-        }} onClick={strikeOut}>{props.text}</li>)
+            textDecoration: props.done ? 'line-through': '',
+            fontWeight: props.done ? 'bolder' : 'normal',
+            wordWrap: "break-word",
+            }} onClick={strikeOut}>{props.text}</li> )
 };
 
 export default ToDo;
