@@ -4,6 +4,7 @@ import ToDo from './ToDo';
 import { useUpdateTitle } from './hooks/changeTitle';
 import { useUpdateDataBase } from './hooks/saveDataBase';
 import { fetchDataBase } from './hooks/fetchDataBase';
+import imageLoading from './img/loading.gif'
 
 function App() {
 
@@ -48,7 +49,7 @@ function App() {
           <button disabled={disabledButton}>Add ToDo</button>
         </div>
       </form>
-      {loading ? (<img src="/img/loading.gif" alt="img" />) : (
+      {loading ? (<img src={imageLoading} alt="img" />) : (
       
           <ul>
             {toDoLists.map((toDoList, index) =>
