@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './index.css'
 import ToDo from './ToDo';
+import LoadingImage from './loadingData'
 import { useUpdateTitle } from './hooks/changeTitle';
 import { useUpdateDataBase } from './hooks/saveDataBase';
 import { fetchDataBase } from './hooks/fetchDataBase';
@@ -20,7 +21,7 @@ function App() {
     fetchDataBase(['our-item-key', 'delete-item-key'])
       .then((data) => {
 
-        const toDoLists:any = data[0];
+        const toDoLists: any = data[0];
         const deleteListItem: any = data[1];
         
         setToDoLists(toDoLists);
@@ -49,24 +50,25 @@ function App() {
           <button disabled={disabledButton}>Add ToDo</button>
         </div>
       </form>
-      {loading ? (<img src={imageLoading} alt="img" />) : (
-      
-          <ul>
-            {toDoLists.map((toDoList, index) =>
-              <ToDo key={index} text={toDoList} id={index}
-                done={deleteListItem.includes(index)}
-                completed={(id: number) => {
-                  if (deleteListItem.includes(index)) {
+      {loading ? (<LoadingImage imageSrc={imageLoading} />) : (
+        <ul>
+              {
+                toDoLists.map((toDoList, index) =>
+                  <ToDo key={index} text={toDoList} id={index}
+                    done={deleteListItem.includes(index)}
+                    completed={(id: number) => {
+                      if (deleteListItem.includes(index)) {
 
-                    const rawdeleteListItem = deleteListItem.filter(item => item !== id);
-                    setdeleteListItem([...rawdeleteListItem])
-                  } else {
-                    setdeleteListItem([...deleteListItem, id])
-                  }
-                }} />
-            )
-            }
-        </ul>
+                        const rawdeleteListItem = deleteListItem.filter(item => item !== id);
+                        setdeleteListItem([...rawdeleteListItem])
+                      } else {
+                        setdeleteListItem([...deleteListItem, id])
+                      }
+                    }} />
+                )
+              }
+            </ul>
+        
       )}
       <button id='delete' disabled={disabledReset} onClick={() => {
 

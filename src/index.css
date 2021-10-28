@@ -154,3 +154,14 @@ img{
 position: relative;
 width: 550px;
 }
+
+.loadingMessage{
+    color: #03a9f4;
+    padding: 10px 20px;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    top: 40px;
+    overflow: hidden;
+}
