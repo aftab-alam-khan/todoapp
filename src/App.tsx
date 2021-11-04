@@ -30,7 +30,7 @@ function App() {
       });
   }, [])
   
-  useUpdateDataBase(toDoLists, deleteListItem);
+  useUpdateDataBase(toDoLists, deleteListItem, loading);
 
   useUpdateTitle(toDoLists, deleteListItem);
   
