@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+nav{
+  position: relative;
+  left: -25rem;
+  overflow: hidden;
+  top: 25px;
+}
+nav ul li{
+  list-style: none;
+}
+h1{
+  background: #03a9f4;
+  color: #fff;
+  padding: 10px 10px;
+  font-weight: 600;
+  justify-content: center;
+  text-align: center;
+}
+
+.home{
+position: relative;
+width: 45px;
+height: 40px;
+background: #111;
+}

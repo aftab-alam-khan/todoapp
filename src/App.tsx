@@ -6,6 +6,10 @@ import { useUpdateTitle } from './hooks/changeTitle';
 import { useUpdateDataBase } from './hooks/saveDataBase';
 import { fetchDataBase } from './hooks/fetchDataBase';
 import imageLoading from './img/loading.gif'
+// import imageHome from './img/home.png'
+// import {
+//   Link
+// } from "react-router-dom";
 
 function App() {
 
@@ -37,6 +41,7 @@ function App() {
 
   return (
     <div className='list'>
+      {/* <Link to="/" ><img className='home' src={imageHome} alt='home'/></Link> */}
       <h2>Todo List</h2>
       <form onSubmit={(event) => {
         event.preventDefault();
